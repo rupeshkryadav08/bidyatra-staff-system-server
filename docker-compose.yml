@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # MongoDB Database Service
+  mongodb:
+    image: mongo:latest
+    container_name: bidyatra-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=bidyatra_staff
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - bidyatra-network
+
+  # Spring Boot Staff System App
+  bidyatra-staff-system:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bidyatra-staff-app
+    restart: always
+    ports:
+      - "10000:8080"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/bidyatra_staff
+      - APP_JWT_SECRET=${APP_JWT_SECRET:-BidYatra-Change-This-Secret-To-A-Long-Random-Production-Key-2026}
+      - APP_ADMIN_USERNAME=${APP_ADMIN_USERNAME:-admin@bidyatra.com}
+      - APP_ADMIN_PASSWORD=${APP_ADMIN_PASSWORD:-Admin@12345}
+      - MAIL_USERNAME=${MAIL_USERNAME:-rrk155889@gmail.com}
+      - MAIL_PASSWORD=${MAIL_PASSWORD:-your_app_password_here}
+    depends_on:
+      - mongodb
+    networks:
+      - bidyatra-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  bidyatra-network:
+    driver: bridge

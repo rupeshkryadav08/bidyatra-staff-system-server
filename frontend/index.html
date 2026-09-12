@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BidYatra | Staff Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     LOGIN PAGE
+========================================================= -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-card">
+
+        <img
+                src="logo.jpeg"
+                class="login-logo"
+                alt="BidYatra"
+        >
+
+        <h1>Staff Management</h1>
+
+        <p>
+            BidYatra Mobility Technologies Private Limited
+        </p>
+
+        <form id="loginForm">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                    id="username"
+                    type="email"
+                    placeholder="admin@bidyatra.com"
+                    autocomplete="username"
+                    required
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                    id="password"
+                    type="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required
+            >
+
+            <button
+                    class="primary-btn"
+                    type="submit"
+            >
+                Sign In
+            </button>
+
+            <div
+                    id="loginError"
+                    class="error"
+                    role="alert"
+            ></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ADMIN OTP PAGE
+========================================================= -->
+
+<div id="otpPage" class="login-page hidden">
+
+    <div class="login-card">
+
+        <img
+                src="logo.jpeg"
+                class="login-logo"
+                alt="BidYatra"
+        >
+
+        <h1>
+            Admin Verification
+        </h1>
+
+        <p>
+            Enter the 6-digit code sent to your admin email.
+        </p>
+
+        <form id="otpForm">
+
+            <label for="otp">
+                Verification Code
+            </label>
+
+            <input
+                    id="otp"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="6"
+                    pattern="[0-9]{6}"
+                    placeholder="6-digit code"
+                    autocomplete="one-time-code"
+                    required
+            >
+
+            <button
+                    class="primary-btn"
+                    type="submit"
+            >
+                Verify & Continue
+            </button>
+
+            <div
+                    id="otpError"
+                    class="error"
+                    role="alert"
+            ></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
+
+<div id="app" class="app hidden">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <img
+                    src="logo.jpeg"
+                    alt="BidYatra"
+            >
+
+            <div>
+
+                <b>
+                    BIDYATRA
+                </b>
+
+                <small>
+                    Staff System
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav>
+
+            <!-- ADMIN ONLY DASHBOARD -->
+
+            <a
+                    href="#dashboard"
+                    id="dashboardNav"
+                    style="display:none;"
+            >
+                Dashboard
+            </a>
+
+
+            <!-- STAFF + ADMIN -->
+
+            <a
+                    href="#activitySection"
+                    id="activityNav"
+            >
+                Add Daily Activity
+            </a>
+
+
+            <!-- ADMIN ONLY -->
+
+            <a
+                    href="#recordsSection"
+                    id="historyNav"
+                    style="display:none;"
+            >
+                Activity History
+            </a>
+
+
+            <!-- ADMIN ONLY -->
+
+            <a
+                    href="#adminUsersSection"
+                    id="usersNav"
+                    style="display:none;"
+            >
+                Staff Accounts
+            </a>
+
+
+            <!-- STAFF + ADMIN -->
+
+            <a
+                    href="#reportsSection"
+                    id="reportsNav"
+            >
+                Reports
+            </a>
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <button
+                id="logoutBtn"
+                class="logout"
+                type="button"
+        >
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>
+                    Daily Staff Activity
+                </h2>
+
+                <span id="welcomeText">
+                    Company Daily Diary
+                </span>
+
+            </div>
+
+            <div class="user-chip">
+
+                <span id="roleText">
+                    ADMIN
+                </span>
+
+                <b id="userName">
+                    Admin
+                </b>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <section
+                class="content"
+                id="dashboard"
+        >
+
+
+            <!-- =================================================
+                 ADMIN ONLY HERO
+            ================================================== -->
+
+            <div
+                    class="hero"
+                    id="adminHero"
+                    style="display:none;"
+            >
+
+                <div>
+
+                    <span>
+                        WELCOME TO BIDYATRA
+                    </span>
+
+                    <h1>
+                        Staff Activity Dashboard
+                    </h1>
+
+                    <p>
+                        Track field work, driver meetings,
+                        registrations and document issues.
+                    </p>
+
+                </div>
+
+                <img
+                        src="logo.jpeg"
+                        alt="BidYatra"
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 ADMIN ONLY STATISTICS
+            ================================================== -->
+
+            <div
+                    class="stats"
+                    id="adminStats"
+                    style="display:none;"
+            >
+
+                <div class="stat">
+
+                    <small>
+                        Today's Staff
+                    </small>
+
+                    <strong id="statStaff">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <small>
+                        Drivers Met
+                    </small>
+
+                    <strong id="statDrivers">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <small>
+                        Registrations
+                    </small>
+
+                    <strong id="statLogins">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <small>
+                        Document Issues
+                    </small>
+
+                    <strong id="statDocs">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STAFF + ADMIN
+                 ADD DAILY ACTIVITY
+            ================================================== -->
+
+            <section
+                    class="card"
+                    id="activitySection"
+            >
+
+                <div class="card-title">
+
+                    <div>
+
+                        <span>
+                            STAFF MANAGEMENT
+                        </span>
+
+                        <h2 id="formTitle">
+                            Add Daily Activity
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form id="activityForm">
+
+                    <input
+                            type="hidden"
+                            id="recordId"
+                    >
+
+
+                    <div class="grid">
+
+
+                        <!-- DATE -->
+
+                        <div>
+
+                            <label for="date">
+                                Date
+                            </label>
+
+                            <input
+                                    id="date"
+                                    type="date"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <!-- STAFF NAME -->
+
+                        <div>
+
+                            <label for="staffName">
+                                Staff Name
+                            </label>
+
+                            <input
+                                    id="staffName"
+                                    type="text"
+                                    placeholder="Enter staff name"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <div>
+
+                            <label for="location">
+                                Visiting Location
+                            </label>
+
+                            <input
+                                    id="location"
+                                    type="text"
+                                    placeholder="Dumka Bus Stand"
+                            >
+
+                        </div>
+
+
+                        <!-- DRIVERS -->
+
+                        <div>
+
+                            <label for="drivers">
+                                Drivers Met
+                            </label>
+
+                            <input
+                                    id="drivers"
+                                    type="number"
+                                    min="0"
+                                    value="0"
+                            >
+
+                        </div>
+
+
+                        <!-- REGISTRATION -->
+
+                        <div>
+
+                            <label for="logins">
+                                Login / Registration
+                            </label>
+
+                            <input
+                                    id="logins"
+                                    type="number"
+                                    min="0"
+                                    value="0"
+                            >
+
+                        </div>
+
+
+                        <!-- DOCUMENT ISSUES -->
+
+                        <div>
+
+                            <label for="docs">
+                                Document Issues
+                            </label>
+
+                            <input
+                                    id="docs"
+                                    type="number"
+                                    min="0"
+                                    value="0"
+                            >
+
+                        </div>
+
+
+                        <!-- REMARKS -->
+
+                        <div class="full">
+
+                            <label for="remarks">
+                                Other Activity / Remarks
+                            </label>
+
+                            <textarea
+                                    id="remarks"
+                                    placeholder="Enter work details..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="actions">
+
+                        <button
+                                type="button"
+                                id="resetBtn"
+                                class="secondary-btn"
+                        >
+                            Reset
+                        </button>
+
+
+                        <button
+                                type="submit"
+                                class="primary-btn"
+                                id="saveBtn"
+                        >
+                            Save Daily Record
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- =================================================
+                 ADMIN ONLY
+                 ACTIVITY HISTORY
+            ================================================== -->
+
+            <section
+                    class="card"
+                    id="recordsSection"
+                    style="display:none;"
+            >
+
+                <div class="card-title records-head">
+
+                    <div>
+
+                        <span>
+                            ACTIVITY HISTORY
+                        </span>
+
+                        <h2>
+                            Daily Staff Records
+                        </h2>
+
+                    </div>
+
+
+                    <div class="filters">
+
+                        <input
+                                id="search"
+                                type="search"
+                                placeholder="Search staff/location"
+                        >
+
+                        <input
+                                id="filterDate"
+                                type="date"
+                        >
+
+                        <button
+                                id="clearFilter"
+                                type="button"
+                                class="secondary-btn"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+
+                            <th>Staff</th>
+
+                            <th>Location</th>
+
+                            <th>Drivers</th>
+
+                            <th>Registration</th>
+
+                            <th>Docs</th>
+
+                            <th>Remarks</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="records"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                        id="empty"
+                        class="empty"
+                >
+                    No records found.
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STAFF + ADMIN
+                 REPORTS
+            ================================================== -->
+
+            <section
+                    class="card"
+                    id="reportsSection"
+            >
+
+                <div class="card-title">
+
+                    <div>
+
+                        <span>
+                            REPORTS
+                        </span>
+
+                        <h2>
+                            Export My Reports
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-box">
+
+                    <p>
+                        Use the selected date filter for a
+                        date-specific report, or leave it empty
+                        for all records.
+                    </p>
+
+
+                    <button
+                            class="primary-btn"
+                            id="excelBtn"
+                            type="button"
+                    >
+                        Export Excel
+                    </button>
+
+
+                    <button
+                            class="secondary-btn"
+                            id="pdfBtn"
+                            type="button"
+                    >
+                        Export PDF
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ADMIN ONLY
+                 STAFF ACCOUNTS
+            ================================================== -->
+
+            <section
+                    class="card"
+                    id="adminUsersSection"
+                    style="display:none;"
+            >
+
+                <div class="card-title">
+
+                    <div>
+
+                        <span>
+                            ADMIN
+                        </span>
+
+                        <h2>
+                            Staff Accounts
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CREATE USER -->
+
+                <form
+                        id="userForm"
+                        class="user-form"
+                >
+
+                    <input
+                            id="newName"
+                            type="text"
+                            placeholder="Staff name"
+                            required
+                    >
+
+
+                    <input
+                            id="newUsername"
+                            type="email"
+                            placeholder="Staff email"
+                            required
+                    >
+
+
+                    <input
+                            id="newPassword"
+                            type="password"
+                            placeholder="Temporary password"
+                            required
+                    >
+
+
+                    <select id="newRole">
+
+                        <option value="STAFF">
+                            STAFF
+                        </option>
+
+                        <option value="ADMIN">
+                            ADMIN
+                        </option>
+
+                    </select>
+
+
+                    <button
+                            class="primary-btn"
+                            type="submit"
+                    >
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                <!-- USERS TABLE -->
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>Username</th>
+
+                            <th>Role</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="users"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer>
+
+                © 2026 BIDYATRA MOBILITY TECHNOLOGIES PRIVATE LIMITED
+                · Bid • Ride • Earn
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+        id="toast"
+        class="toast"
+></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
